@@ -1,46 +1,55 @@
 package com.study.recycler_view;
 
-import android.media.Image;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-//
 
 import java.util.List;
+
+//
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
 
     private List<Album> mAlbumList;
     private int mItemLayout;
 
+    /**
+     * @see MyRecyclerAdapter onCreateViewHolder
+     *  Layout Id 값을 Adapter 를 생성할 때 파라메터 값으로 전달하기보다는 메소드안에서 직접 id값을 넣어주는게
+     *  어떤 레이아웃을 사용하였는지 알아보기 쉬움
+     */
+    public MyRecyclerAdapter(List<Album> items){
+        // this 를 생략해도 변수명 앞에 m 을 붙였기때문에 멤버변수인걸 한눈에 알수있음
+        mAlbumList = items;
+    }
 
-    public MyRecyclerAdapter(List<Album> items , int mItemLayout){
 
+
+   public MyRecyclerAdapter(List<Album> items , int mItemLayout){
         this.mAlbumList = items;
-        this.mItemLayout = mItemLayout;
+//        this.mItemLayout = mItemLayout;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(mItemLayout,viewGroup,false);
+//        View view = LayoutInflater.from(viewGroup.getContext()).inflate(mItemLayout,viewGroup,false);
+        // Layout Id 값을 Adapter 를 생성할 때 파라메터 값으로 전달하기보다는 메소드안에서 직접 id값을 넣어주는게
+        // 어떤 레이아웃을 사용하였는지 알아보기 쉬움
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_album, viewGroup,false);
         return new ViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-
         Album item = mAlbumList.get(position);
         viewHolder.textTitle.setText(item.getTitle());
         viewHolder.img.setBackgroundResource(item.getImage());
         viewHolder.textArtist.setText(item.getArtist());
         viewHolder.itemView.setTag(item);
-
     }
 
     @Override
@@ -56,7 +65,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
         public ViewHolder(View itemView){
             super(itemView);
-
             img = (ImageView) itemView.findViewById(R.id.imgProfile);
             textTitle = (TextView) itemView.findViewById(R.id.textTitle);
             textArtist = (TextView) itemView.findViewById(R.id.textArtist);
