@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private RecyclerView lecyclerView;
+    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +34,26 @@ public class MainActivity extends Activity {
 
     private void initLayout(){
 
-        lecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
     }
 
 
     private void initData(){
 
-        List<Album> albumList = new ArrayList<Album>();
+        List<Album> mAlbumList = new ArrayList<Album>();
 
         for (int i =0; i<20; i ++){
 
             Album album = new Album();
-            album.setTitle("어느 멋진 날");
+            album.setTitle("Brown City");
             album.setArtist("김예림");
             album.setImage(R.drawable.ic_launcher);
-            albumList.add(album);
+            mAlbumList.add(album);
         }
 
-        lecyclerView.setAdapter(new MyRecyclerAdapter(albumList,R.layout.row_album));
-        lecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        lecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(new MyRecyclerAdapter(mAlbumList,R.layout.row_album));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 

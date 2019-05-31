@@ -13,21 +13,21 @@ import android.widget.TextView;
 import java.util.List;
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
 
-    private List<Album> albumList;
-    private int itemLayout;
+    private List<Album> mAlbumList;
+    private int mItemLayout;
 
 
-    public MyRecyclerAdapter(List<Album> items , int itemLayout){
+    public MyRecyclerAdapter(List<Album> items , int mItemLayout){
 
-        this.albumList = items;
-        this.itemLayout = itemLayout;
+        this.mAlbumList = items;
+        this.mItemLayout = mItemLayout;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(itemLayout,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(mItemLayout,viewGroup,false);
         return new ViewHolder(view);
     }
 
@@ -35,21 +35,23 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-        Album item = albumList.get(position);
+        Album item = mAlbumList.get(position);
         viewHolder.textTitle.setText(item.getTitle());
         viewHolder.img.setBackgroundResource(item.getImage());
+        viewHolder.textArtist.setText(item.getArtist());
         viewHolder.itemView.setTag(item);
 
     }
 
     @Override
     public int getItemCount() {
-        return albumList.size();
+        return mAlbumList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView img;
+        public TextView textArtist;
         public TextView textTitle;
 
         public ViewHolder(View itemView){
@@ -57,6 +59,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
             img = (ImageView) itemView.findViewById(R.id.imgProfile);
             textTitle = (TextView) itemView.findViewById(R.id.textTitle);
+            textArtist = (TextView) itemView.findViewById(R.id.textArtist);
         }
 
     }
