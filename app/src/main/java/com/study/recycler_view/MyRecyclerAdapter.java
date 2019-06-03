@@ -1,5 +1,6 @@
 package com.study.recycler_view;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,13 +8,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 //
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
 
-    private List<Album> mAlbumList;
+    private List<Album> mAlbumList = new ArrayList<>();
     private int mItemLayout;
+
+    public MyRecyclerAdapter(){
+    }
 
     /**
      * @see MyRecyclerAdapter onCreateViewHolder
@@ -44,12 +51,25 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        Album item = mAlbumList.get(position);
-        viewHolder.textTitle.setText(item.getTitle());
-        viewHolder.img.setBackgroundResource(item.getImage());
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        Album item = getItem(position);
+        viewHolder.textTitle.setText(item.title);
+        if(viewHolder.itemView.getContext().getResources().getDrawable(item.getImage())!=null) {
+            viewHolder.img.setBackgroundResource(item.getImage());
+        }
         viewHolder.textArtist.setText(item.getArtist());
         viewHolder.itemView.setTag(item);
+
+
+
+    }
+
+    public void setList(List<Album> arrayList){
+        mAlbumList=arrayList;
+    }
+
+    Album getItem(int position){
+        return mAlbumList.size()>position ? mAlbumList.get(position) : new Album();
     }
 
     @Override

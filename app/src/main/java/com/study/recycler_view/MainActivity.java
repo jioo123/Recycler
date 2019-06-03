@@ -1,6 +1,7 @@
 package com.study.recycler_view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private RecyclerView mRecyclerView;
+    Change mchange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,21 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         initLayout();
         initData();
+
+        mchange = new Change() {
+            @Override
+            public void click(int position) {
+                Intent intent= new Intent(getApplicationContext(),
+                        NewPage.class);
+                startActivity(intent);
+            }
+        };
+
+
+
+        Intent intent = new Intent(this, NewPage.class);
+        startActivity(intent);
+
     }
 
     private void initLayout() {
@@ -27,17 +44,19 @@ public class MainActivity extends Activity {
 
 
     private void initData() {
+        MyRecyclerAdapter adapter = new MyRecyclerAdapter();
         List<Album> mAlbumList = new ArrayList<>();
+        mRecyclerView.setAdapter(adapter);
+
         for (int i = 0; i < 20; i++) {
             Album album = new Album();
             album.setTitle("Brown City");
-            album.setArtist("김예림");
+            album.setArtist(getResources().getString(R.string.app_name));
             album.setImage(R.drawable.ic_launcher);
             mAlbumList.add(album);
         }
-
+adapter.setList(mAlbumList);
 //        mRecyclerView.setAdapter(new MyRecyclerAdapter(mAlbumList, R.layout.row_album));
-        mRecyclerView.setAdapter(new MyRecyclerAdapter(mAlbumList));
 
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         // 액티비티 안에서 Context 를 사용할 때는  ApplicationContext 를 사용하기보다 액티비티의 Context 를 사용하는게 좋음
