@@ -74,7 +74,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              // 인터페이스 연결 
+                Change mchange ;
+                mchange.click(position);
+              // 인터페이스 연결
             }});
 
 
@@ -109,7 +111,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         }
 
         public void onClick(View v){
-            System.out.println(getPosition());
+            System.out.println(getAdapterPosition());
             Intent intent=new Intent(v.getContext(),NewPage.class);
             v.getContext().startActivity(intent);
         }
