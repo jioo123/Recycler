@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +35,10 @@ public class MainActivity extends Activity {
 
 
 
-        Intent intent = new Intent(this, NewPage.class);
-        startActivity(intent);
 
+    }
+    public void onItemClick(View view){
+        Toast.makeText(this,"버튼을 눌렀습니다.",Toast.LENGTH_SHORT).show();
     }
 
     private void initLayout() {

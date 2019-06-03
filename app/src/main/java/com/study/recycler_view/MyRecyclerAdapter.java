@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     private List<Album> mAlbumList = new ArrayList<>();
     private int mItemLayout;
+
+
+
+//    .setOnClickListener(new View.OnClickListener(){
+//        public void onClick(View v){
+//            Intent intent = new Intent();
+//        }
+//    });
+
+
+
 
     public MyRecyclerAdapter(){
     }
