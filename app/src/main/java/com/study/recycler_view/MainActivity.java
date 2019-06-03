@@ -39,6 +39,9 @@ public class MainActivity extends Activity {
     }
     public void onItemClick(View view){
         Toast.makeText(this,"버튼을 눌렀습니다.",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),NewPage.class);
+
+
     }
 
     private void initLayout() {

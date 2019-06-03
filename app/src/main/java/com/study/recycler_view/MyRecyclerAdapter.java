@@ -19,7 +19,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     private List<Album> mAlbumList = new ArrayList<>();
     private int mItemLayout;
-
+    Change mchange;
 
 
 //    .setOnClickListener(new View.OnClickListener(){
@@ -71,7 +71,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         }
         viewHolder.textArtist.setText(item.getArtist());
         viewHolder.itemView.setTag(item);
-
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              // 인터페이스 연결 
+            }});
 
 
     }
@@ -89,7 +93,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         return mAlbumList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
         public ImageView img;
         public TextView textArtist;
@@ -97,10 +101,19 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
         public ViewHolder(View itemView){
             super(itemView);
+
+            itemView.setOnClickListener(this);
             img = (ImageView) itemView.findViewById(R.id.imgProfile);
             textTitle = (TextView) itemView.findViewById(R.id.textTitle);
             textArtist = (TextView) itemView.findViewById(R.id.textArtist);
         }
+
+        public void onClick(View v){
+            System.out.println(getPosition());
+            Intent intent=new Intent(v.getContext(),NewPage.class);
+            v.getContext().startActivity(intent);
+        }
+
 
     }
 }
