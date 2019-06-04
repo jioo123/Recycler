@@ -19,7 +19,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     private List<Album> mAlbumList = new ArrayList<>();
     private int mItemLayout;
-    Change mchange;
+    Change mChange; // mAppleBananaCarrot 이런식으로 단어마다 첫번째를 대문자로
 
 
 //    .setOnClickListener(new View.OnClickListener(){
@@ -74,8 +74,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Change mchange ;
-                mchange.click(position);
+                mChange.click(position);
               // 인터페이스 연결
             }});
 
@@ -93,6 +92,13 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     @Override
     public int getItemCount() {
         return mAlbumList.size();
+    }
+
+    /**
+     * @param change 메인액티비티에서 만든 인터페이스를 받아옴
+     */
+    public void setInterface(Change change) {
+        mChange = change;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{

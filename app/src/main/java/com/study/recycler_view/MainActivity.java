@@ -24,24 +24,14 @@ public class MainActivity extends Activity {
         initLayout();
         initData();
 
-        mchange = new Change() {
-            @Override
-            public void click(int position) {
-                Intent intent= new Intent(getApplicationContext(),
-                        NewPage.class);
-                startActivity(intent);
-            }
-        };
-
-
-
 
     }
-    public void onItemClick(View view){
-        Toast.makeText(this,"버튼을 눌렀습니다.",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(),NewPage.class);
 
-
+    // 이렇게 하면 해당 아이템의 위치를 알수없어서 안됨
+    // 리스트뷰같은 형태에선 잘못된 사용
+    public void onItemClick(View view) {
+        Toast.makeText(this, "버튼을 눌렀23습니다.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), NewPage.class);
     }
 
     private void initLayout() {
@@ -50,7 +40,22 @@ public class MainActivity extends Activity {
 
 
     private void initData() {
+        mchange = new Change() {
+            @Override
+            public void click(int position) {
+//                Intent intent= new Intent(getApplicationContext(),
+//                        NewPage.class);
+
+                // 해당 액티비티의 Context를 사용
+                // 인터페이스안에 메소드라서 단순 this 를 사용하면 해당 인터페이스를 가르킴
+                // 따라서 MainActivity.this 로 클래스명.this 로 사용
+                Intent intent = new Intent(MainActivity.this, NewPage.class);
+                startActivity(intent);
+            }
+        };
+
         MyRecyclerAdapter adapter = new MyRecyclerAdapter();
+        adapter.setInterface(mchange);      //미리 초기화한 인터페이스를 넣어줌
         List<Album> mAlbumList = new ArrayList<>();
         mRecyclerView.setAdapter(adapter);
 
@@ -61,7 +66,7 @@ public class MainActivity extends Activity {
             album.setImage(R.drawable.ic_launcher);
             mAlbumList.add(album);
         }
-adapter.setList(mAlbumList);
+        adapter.setList(mAlbumList);
 //        mRecyclerView.setAdapter(new MyRecyclerAdapter(mAlbumList, R.layout.row_album));
 
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
