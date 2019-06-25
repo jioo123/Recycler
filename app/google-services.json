@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "135601708986",
+    "firebase_url": "https://application-jioostudy.firebaseio.com",
+    "project_id": "application-jioostudy",
+    "storage_bucket": "application-jioostudy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135601708986:android:e1939d80f30bd7e1",
+        "android_client_info": {
+          "package_name": "com.study.recycler_view"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135601708986-d32hi7umbsd96jsrvuf4723qvr4v2lmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaBM8_fLBDXhOf_tgr15mxIxgKUFf5anE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135601708986-d32hi7umbsd96jsrvuf4723qvr4v2lmk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -63,20 +63,20 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Album item = getItem(position);
         viewHolder.textTitle.setText(item.title);
         if(viewHolder.itemView.getContext().getResources().getDrawable(item.getImage())!=null) {
             viewHolder.img.setBackgroundResource(item.getImage());
         }
         viewHolder.textArtist.setText(item.getArtist());
-        viewHolder.itemView.setTag(item);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mChange.click(position);
-              // 인터페이스 연결
-            }});
+        viewHolder.itemView.setTag(position+"");
+//        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mChange.click(position);
+//              // 인터페이스 연결
+//            }});
 
 
     }
@@ -110,7 +110,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         public ViewHolder(View itemView){
             super(itemView);
 
-            itemView.setOnClickListener(this);
+ //           itemView.setOnClickListener(this);
             img = (ImageView) itemView.findViewById(R.id.imgProfile);
             textTitle = (TextView) itemView.findViewById(R.id.textTitle);
             textArtist = (TextView) itemView.findViewById(R.id.textArtist);
@@ -118,8 +118,8 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
         public void onClick(View v){
             System.out.println(getAdapterPosition());
-            Intent intent=new Intent(v.getContext(),NewPage.class);
-            v.getContext().startActivity(intent);
+  //         Intent intent=new Intent(v.getContext(),NewPage.class);
+   //         v.getContext().startActivity(intent);
         }
 
 

@@ -6,16 +6,26 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class MainActivity extends Activity {
 
     private RecyclerView mRecyclerView;
-    Change mchange;
+    Change mChange;
+    DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +35,35 @@ public class MainActivity extends Activity {
         initData();
 
 
+        // 파이어베이스 데이터 서버전송
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        mDatabaseReference = database.getReference("test").child("111");
+        mDatabaseReference.setValue("Hello, World!");
+        mDatabaseReference.push();
     }
+
+
 
     // 이렇게 하면 해당 아이템의 위치를 알수없어서 안됨
     // 리스트뷰같은 형태에선 잘못된 사용
     public void onItemClick(View view) {
-        Toast.makeText(this, "버튼을 눌렀23습니다.", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), NewPage.class);
+
+        // 파이어베이스 데이터 가져오는부분
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
     }
 
     private void initLayout() {
@@ -40,7 +72,7 @@ public class MainActivity extends Activity {
 
 
     private void initData() {
-        mchange = new Change() {
+        mChange = new Change() {
             @Override
             public void click(int position) {
 //                Intent intent= new Intent(getApplicationContext(),
@@ -49,13 +81,13 @@ public class MainActivity extends Activity {
                 // 해당 액티비티의 Context를 사용
                 // 인터페이스안에 메소드라서 단순 this 를 사용하면 해당 인터페이스를 가르킴
                 // 따라서 MainActivity.this 로 클래스명.this 로 사용
-                Intent intent = new Intent(MainActivity.this, NewPage.class);
-                startActivity(intent);
+             //   Intent intent = new Intent(MainActivity.this, NewPage.class);
+              //  startActivity(intent);
             }
         };
 
         MyRecyclerAdapter adapter = new MyRecyclerAdapter();
-        adapter.setInterface(mchange);      //미리 초기화한 인터페이스를 넣어줌
+        adapter.setInterface(mChange);      //미리 초기화한 인터페이스를 넣어줌
         List<Album> mAlbumList = new ArrayList<>();
         mRecyclerView.setAdapter(adapter);
 

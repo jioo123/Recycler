@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+
+
+
+    >
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="23dp"
+        android:text="회원가입" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 회원가입을 해야 정상적으로 시작할 수 있습니다" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="250dp"
+        android:layout_margin="10dp"
+        android:hint="Enter email"
+        android:inputType="textEmailAddress"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="250dp"
+        android:layout_margin="10dp"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/buttonSignup"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_gravity="center_horizontal"
+        android:text="회원가입" />
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
