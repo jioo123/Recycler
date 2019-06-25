@@ -62,7 +62,9 @@ public class SignActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                final ProgressDialog mDialog = new ProgressDialog(SignUp.this);
+//                final ProgressDialog mDialog = new ProgressDialog(SignUp.this);
+                final ProgressDialog mDialog = new ProgressDialog(SignActivity.this);
+
                 mDialog.setMessage("Please Waiting");
                 mDialog.show();
 
@@ -71,12 +73,16 @@ public class SignActivity extends Activity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(edtPhone.getText().toString()).exists()){
                             mDialog.dismiss();
-                            Toast.makeText(SignUp.this,"already register",Toast.LENGTH_LONG).show();
+//                            Toast.makeText(SignUp.this,"already register",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignActivity.this,"already register",Toast.LENGTH_LONG).show();
                         }else{
                             mDialog.dismiss();
-                            UserDTO user = new UserDTO (edtName.getText().toString(),edtPassword.getText().toString());
-                            table_user.child(edtPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUp.this,"sign up successfully",Toast.LENGTH_LONG).show();
+//                            UserDTO user = new UserDTO (edtName.getText().toString(),edtPassword.getText().toString());
+                            mAuthEntity.name = edtName.getText().toString();
+                            mAuthEntity.password = edtPassword.getText().toString();
+                            table_user.child(edtPhone.getText().toString()).setValue(mAuthEntity);
+//                            Toast.makeText(SignUp.this,"sign up successfully",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignActivity.this,"sign up successfully",Toast.LENGTH_LONG).show();
                             finish();
 
                         }
@@ -86,7 +92,7 @@ public class SignActivity extends Activity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-                })
+                });
             }
         });
 
