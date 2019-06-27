@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
 
     private RecyclerView mRecyclerView;
     Change mChange;
+    DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class MainActivity extends Activity {
         initLayout();
         initData();
 
+        AuthEntity authEntity = getIntent().getParcelableExtra(SignActivity.AUTH_DATA_KEY);
 
     }
 
@@ -40,7 +42,25 @@ public class MainActivity extends Activity {
 
     // 이렇게 하면 해당 아이템의 위치를 알수없어서 안됨
     // 리스트뷰같은 형태에선 잘못된 사용
+    public void onItemClick(View view) {
 
+        // 파이어베이스 데이터 가져오는부분
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+    }
 
     private void initLayout() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);

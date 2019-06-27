@@ -26,12 +26,42 @@
         android:layout_height="wrap_content"
         android:text=" 회원가입을 해야 정상적으로 시작할 수 있습니다" />
     <EditText
+        android:id="@+id/edtId"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="250dp"
+        android:layout_margin="10dp"
+        android:hint="Enter ID"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="250dp"
+        android:layout_margin="10dp"
+        android:hint="Enter Email"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtAge"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="250dp"
+        android:layout_margin="10dp"
+        android:hint="Enter Age"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLength="2"
+        android:layout_height="wrap_content" />
+    <EditText
         android:id="@+id/edtPhone"
         android:layout_gravity="center_horizontal"
         android:layout_width="250dp"
         android:layout_margin="10dp"
         android:hint="Enter Phone"
-
+        android:imeOptions="actionNext"
+        android:inputType="phone"
         android:layout_height="wrap_content" />
 
     <EditText
@@ -40,26 +70,27 @@
         android:layout_width="250dp"
         android:layout_margin="10dp"
         android:hint="Enter Name"
-        a
+        android:imeOptions="actionNext"
+        android:inputType="text"
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/edtPassword"
         android:layout_gravity="center_horizontal"
         android:layout_width="250dp"
+        android:imeOptions="actionDone"
         android:layout_margin="10dp"
+
         android:hint="Enter password"
         android:inputType="textPassword"
         android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
         android:text="회원가입" />
-
-
-
 
 
 
