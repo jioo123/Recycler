@@ -102,6 +102,7 @@ public class SignActivity extends Activity {
 //                            UserDTO user = new UserDTO (edtName.getText().toString(),edtPassword.getText().toString());
                             mAuthEntity.name = edtName.getText().toString();
                             mAuthEntity.password = edtPassword.getText().toString();
+
                             mAuthEntity.age = Integer.parseInt(edtAge.getText().toString());
                             mAuthEntity.email = edtEmail.getText().toString();
                             mAuthEntity.phone = edtPhone.getText().toString();
@@ -112,6 +113,8 @@ public class SignActivity extends Activity {
                             Intent intent = new Intent(SignActivity.this, LoginActivity.class);
                             intent.putExtra(AUTH_DATA_KEY,mAuthEntity);
                             startActivity(intent);
+
+
                             finish();
 
                         }

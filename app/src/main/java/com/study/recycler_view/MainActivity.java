@@ -21,17 +21,17 @@ import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity { // 액티비티를 상속
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView; // 변수명 지정
     Change mChange;
     DatabaseReference mDatabaseReference;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initLayout();
+    protected void onCreate(Bundle savedInstanceState) { // onCreate 생성
+        super.onCreate(savedInstanceState); // 액티비티 만드는 기본코드 실행
+        setContentView(R.layout.activity_main); // layout과 activity 연결
+        initLayout();// 초기화
         initData();
 
         AuthEntity authEntity = getIntent().getParcelableExtra(SignActivity.AUTH_DATA_KEY);
