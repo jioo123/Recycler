@@ -45,7 +45,8 @@ public class LoginActivity extends Activity { // activity class 상속
 
                 mDatabaseReference.addValueEventListener(new ValueEventListener() {//용도 경로의 전체 내용에 대한 변경 사항을 읽고 수신 대기
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {// datasnapshot data 전체
+                    // onDataChange() 메소드는 해당위치에서 하위를 포함한 데이터가 변경 될 때마다 호출됨,datasnapshot data 전체
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(id).exists() // id 가 존재하고 id의 password가 pw과 같으면
                                 && dataSnapshot.child(id).child("password").getValue().equals(pw)){
                                     setResult(Activity.RESULT_OK);

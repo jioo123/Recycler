@@ -10,7 +10,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:imeOptions="actionNext"
-        android:text="Name" />
+        android:hint="ID"/>
 
     <EditText
         android:id="@+id/login_pw"
@@ -19,7 +19,7 @@
         android:ems="10"
         android:imeOptions="actionDone"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Password" />
 
     <Button
         android:id="@+id/login_bt"
