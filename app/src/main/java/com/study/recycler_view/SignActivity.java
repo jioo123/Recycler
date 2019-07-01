@@ -105,6 +105,9 @@ public class SignActivity extends Activity {
                             Toast.makeText(SignActivity.this,"already register",Toast.LENGTH_LONG).show();
                         }else{
                             //QUESTION
+                            // Please Waiting 이라는 문구를 보여주고 있는
+                            // ProgressDialog 다이얼로그를 닫음
+
                             mDialog.dismiss();
 //                            UserDTO user = new UserDTO (edtName.getText().toString(),edtPassword.getText().toString());
                             // 이름, 비번, 나이 이메일 폰 초기화
