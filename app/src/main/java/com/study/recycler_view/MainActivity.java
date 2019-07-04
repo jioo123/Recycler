@@ -2,12 +2,14 @@ package com.study.recycler_view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,12 +28,13 @@ public class MainActivity extends Activity { // 액티비티를 상속
     private RecyclerView mRecyclerView; // 변수명 지정
     Change mChange;
     DatabaseReference mDatabaseReference;
+    Button mLogoutButton ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // onCreate 생성
         super.onCreate(savedInstanceState); // 액티비티 만드는 기본코드 실행
         setContentView(R.layout.activity_main); // layout과 activity 연결
-        initLayout();// 초기화
+        initLayout();// 초화
         initData();
 
         // AuthEntity 객체 생성과 동시에 초기 , 액티비티 시작할 때 intent 반환
@@ -72,7 +75,34 @@ public class MainActivity extends Activity { // 액티비티를 상속
     private void initLayout() {
         // recyclerView 아이디 연결
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        mLogoutButton = (Button)findViewById(R.id.login_button);
+        // 로그아웃 클릭했을 때
+        mLogoutButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //SharedPreference를 이용하여 간단한 데이터들을 저장하고 불러올 수 있다
+                        //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
+                        SharedPreferences prefs = getSharedPreferences(Application.PREF_NAME,MODE_PRIVATE);
+                        // 수정하기 위해 작성
+                        SharedPreferences.Editor editor = prefs.edit();
+                        // 아이디를 없앤다
+                        editor.putString(Application.PREF_LOGIN_ID,"");
+                        // 바뀐 정보들 넣기
+                        editor.commit();
+                        // intent로 화면 전환
+                        Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                }
+        );
+
     }
+
+
 
     //데이터를 초기화
     private void initData() {

@@ -104,7 +104,7 @@ public class SignActivity extends Activity {
 //                            Toast.makeText(SignUp.this,"already register",Toast.LENGTH_LONG).show();
                             Toast.makeText(SignActivity.this,"already register",Toast.LENGTH_LONG).show();
                         }else{
-                            //QUESTION
+
                             // Please Waiting 이라는 문구를 보여주고 있는
                             // ProgressDialog 다이얼로그를 닫음
 

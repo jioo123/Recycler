@@ -18,7 +18,7 @@ public class FirstSplash extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },900);
+        },1500);
         //0.9초로 저장
 
     }
