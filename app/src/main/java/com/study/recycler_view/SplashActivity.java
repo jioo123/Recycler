@@ -41,8 +41,8 @@ public class SplashActivity extends Activity {
             }
         });
 
-        SharedPreferences prefs = getSharedPreferences(Application.PREF_NAME, MODE_PRIVATE);
-        String text = prefs.getString(Application.PREF_LOGIN_ID, "");
+        SharedPreferences prefs = getSharedPreferences(JiooApplication.PREF_NAME, MODE_PRIVATE);
+        String text = prefs.getString(JiooApplication.PREF_LOGIN_ID, "");
 
         if(!text.isEmpty()){
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
@@ -58,9 +58,9 @@ public class SplashActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         //splash 액티비티에서 main 액티비티로 화면 전환
         if(requestCode==REQUEST_CODE && resultCode==Activity.RESULT_OK){
-            SharedPreferences prefs = getSharedPreferences(Application.PREF_NAME, MODE_PRIVATE);
+            SharedPreferences prefs = getSharedPreferences(JiooApplication.PREF_NAME, MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString(Application.PREF_LOGIN_ID, data.getStringExtra(Application.PREF_LOGIN_ID));
+            editor.putString(JiooApplication.PREF_LOGIN_ID, data.getStringExtra(JiooApplication.PREF_LOGIN_ID));
             editor.commit();
             startActivity(new Intent(this, MainActivity.class));
             //종료

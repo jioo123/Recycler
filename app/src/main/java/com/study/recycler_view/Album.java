@@ -1,9 +1,9 @@
 package com.study.recycler_view;
 
 public class Album {
-    public String title = "";
-    public String artist = "";
-    public int image;  // 이런식으로 이미지 Id 를 데이터클래스에 저장하는건 좋지못함
+    private String title = "";
+    private String artist = "";
+    private int image;  // 이런식으로 이미지 Id 를 데이터클래스에 저장하는건 좋지못함
 
     public String getTitle() {
         return title;

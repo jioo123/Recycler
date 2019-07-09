@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:name=".Application"
+        android:name=".JiooApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SignActivity"/>
@@ -27,7 +27,7 @@
         <activity android:name=".SplashActivity"/>
         <activity android:name=".NewPage"
             ></activity>
-
+        <activity android:name=".jioovoice.JiooVoiceActivity"/>
         <activity android:name=".MainActivity"/>
     <activity android:name=".LoginActivity"/>
 

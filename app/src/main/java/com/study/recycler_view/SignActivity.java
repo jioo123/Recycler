@@ -45,6 +45,8 @@ public class SignActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_activity);
+
+
         mAuthEntity = new AuthEntity();
 
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +18,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.study.recycler_view.jioovoice.JiooVoiceActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
@@ -50,6 +53,13 @@ public class MainActivity extends Activity { // 액티비티를 상속
     // 리스트뷰같은 형태에선 잘못된 사용
     public void onItemClick(View view) {
 
+
+
+
+
+        Intent intent = new Intent(MainActivity.this, JiooVoiceActivity.class);
+        startActivity(intent);
+
         // 데이터 가져오는부분
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -57,9 +67,9 @@ public class MainActivity extends Activity { // 액티비티를 상속
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // 객체를 생성, 초기화
                 //Value를 String.class 타입으로 형변환
-                String value = dataSnapshot.getValue(String.class);
-                // 데이터 값을 띄운다
-                Log.d(TAG, "Value is: " + value);
+//                HashMap value = dataSnapshot.getValue(HashMap.class);
+//                 데이터 값을 띄운다
+                Log.d(TAG, "Value is: " + dataSnapshot);
             }
 
             // 에러가 났을 때
@@ -83,12 +93,12 @@ public class MainActivity extends Activity { // 액티비티를 상속
                     @Override
                     public void onClick(View v) {
                         //SharedPreference를 이용하여 간단한 데이터들을 저장하고 불러올 수 있다
-                        //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
-                        SharedPreferences prefs = getSharedPreferences(Application.PREF_NAME,MODE_PRIVATE);
+                        //저장된 값을 불러오기 위해 같은 네임파일을 찾음.Jio
+                        SharedPreferences prefs = getSharedPreferences(JiooApplication.PREF_NAME,MODE_PRIVATE);
                         // 수정하기 위해 작성
                         SharedPreferences.Editor editor = prefs.edit();
                         // 아이디를 없앤다
-                        editor.putString(Application.PREF_LOGIN_ID,"");
+                        editor.putString(JiooApplication.PREF_LOGIN_ID,"");
                         // 바뀐 정보들 넣기
                         editor.commit();
                         // intent로 화면 전환
@@ -106,6 +116,8 @@ public class MainActivity extends Activity { // 액티비티를 상속
 
     //데이터를 초기화
     private void initData() {
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
         mChange = new Change() {
             @Override
             public void click(int position) {
@@ -120,22 +132,43 @@ public class MainActivity extends Activity { // 액티비티를 상속
             }
         };
         // 아답터 객체를 초기화 하고 생성
-        MyRecyclerAdapter adapter = new MyRecyclerAdapter();
+        final MyRecyclerAdapter adapter = new MyRecyclerAdapter();
         adapter.setInterface(mChange);      //미리 초기화한 인터페이스를 넣어줌
         // mAlumList를 생성, 초기화
-        List<Album> mAlbumList = new ArrayList<>();
+        final List<Dairy> dairyList = new ArrayList<>();
         mRecyclerView.setAdapter(adapter);
 
-        //20개 반복
-        for (int i = 0; i < 20; i++) {
-            Album album = new Album();
-            album.setTitle("Brown City");
-            album.setArtist(getResources().getString(R.string.app_name));
-            album.setImage(R.drawable.ic_launcher);
-            mAlbumList.add(album);
-        }
+        JiooApplication.getDirayFirebase().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                HashMap<String, String> diaryHasmap = (HashMap<String, String>) dataSnapshot.getValue();
+
+                // 해쉬맵으로 저장되어 있음
+                // diaryList.keySet().iterator()
+                // 해쉬맵 keySet Iterator 사용해서 데이터 추출
+                // Dairy dairy = new Dairy();
+//                dairyList.add(dairy);
+
+
+                adapter.setList(dairyList);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+            Dairy dairy = new Dairy();
+            dairy.mDate = "일기날짜";
+            dairy.mContent = "일기내용";
+            dairyList.add(dairy);
+
         // adapter List 설정
-        adapter.setList(mAlbumList);
+        adapter.setList(dairyList);
 //        mRecyclerView.setAdapter(new MyRecyclerAdapter(mAlbumList, R.layout.row_album));
 
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

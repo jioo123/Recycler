@@ -49,7 +49,7 @@ public class LoginActivity extends Activity { // activity class 상속
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(id).exists() // id 가 존재하고 id의 password가 pw과 같으면
                                 && dataSnapshot.child(id).child("password").getValue().equals(pw)){
-                                    setResult(Activity.RESULT_OK, new Intent().putExtra(Application.PREF_LOGIN_ID, dataSnapshot.child(id).getKey()));
+                                    setResult(Activity.RESULT_OK, new Intent().putExtra(JiooApplication.PREF_LOGIN_ID, dataSnapshot.child(id).getKey()));
                                 finish();
                         } else {// 위에 거의 예외는 토스트 메세지를 띄운다
                             Toast.makeText(LoginActivity.this, "로그인 정보를 확인해 주세요", Toast.LENGTH_SHORT).show();

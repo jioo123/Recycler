@@ -17,7 +17,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
 //
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
 
-    private List<Album> mAlbumList = new ArrayList<>();
+    private List<Dairy> mAlbumList = new ArrayList<>();
     private int mItemLayout;
     Change mChange; // mAppleBananaCarrot 이런식으로 단어마다 첫번째를 대문자로
 
@@ -39,14 +39,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
      *  Layout Id 값을 Adapter 를 생성할 때 파라메터 값으로 전달하기보다는 메소드안에서 직접 id값을 넣어주는게
      *  어떤 레이아웃을 사용하였는지 알아보기 쉬움
      */
-    public MyRecyclerAdapter(List<Album> items){
+    public MyRecyclerAdapter(List<Dairy> items){
         // this 를 생략해도 변수명 앞에 m 을 붙였기때문에 멤버변수인걸 한눈에 알수있음
         mAlbumList = items;
     }
 
 
 
-   public MyRecyclerAdapter(List<Album> items , int mItemLayout){
+   public MyRecyclerAdapter(List<Dairy> items , int mItemLayout){
         this.mAlbumList = items;
 //        this.mItemLayout = mItemLayout;
     }
@@ -64,12 +64,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     @Override
         public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Album item = getItem(position);
-        viewHolder.textTitle.setText(item.title);
-        if(viewHolder.itemView.getContext().getResources().getDrawable(item.getImage())!=null) {
-            viewHolder.img.setBackgroundResource(item.getImage());
-        }
-        viewHolder.textArtist.setText(item.getArtist());
+        Dairy item = getItem(position);
+        viewHolder.textTitle.setText(item.mDate);
+
+        viewHolder.textArtist.setText(item.mContent);
         viewHolder.itemView.setTag(position+"");
 //        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -81,12 +79,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     }
 
-    public void setList(List<Album> arrayList){
+    public void setList(List<Dairy> arrayList){
         mAlbumList=arrayList;
     }
 
-    Album getItem(int position){
-        return mAlbumList.size()>position ? mAlbumList.get(position) : new Album();
+    Dairy getItem(int position){
+        return mAlbumList.size()>position ? mAlbumList.get(position) : new Dairy();
     }
 
     @Override
