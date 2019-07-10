@@ -33,10 +33,8 @@ public class MainActivity extends Activity { // 액티비티를 상속
     Change mChange;
     DatabaseReference mDatabaseReference;
     Button mLogoutButton ;
-    static String mId;
-    // 변수를 초기화 해준다
-    public static final String PREF_NAME = "PREF_NAME";
-    public static final String PREF_LOGIN_ID = "PREF_LOGIN_ID";
+
+
     // 파이어베이스에서 데이터 리퍼런스
 
     @Override
@@ -147,7 +145,7 @@ public class MainActivity extends Activity { // 액티비티를 상속
         JiooApplication.getDirayFirebase().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mId= getSharedPreferences(PREF_NAME, MODE_PRIVATE).getString(PREF_LOGIN_ID, "");
+
                 HashMap<String, String> diaryHasmap = (HashMap<String, String>) dataSnapshot.getValue();
 
 
@@ -172,7 +170,7 @@ public class MainActivity extends Activity { // 액티비티를 상속
 
             }
         });
-            mId= getSharedPreferences(PREF_NAME, MODE_PRIVATE).getString(PREF_LOGIN_ID, "");
+
             //다이어리 클래스의 변수를 초기화
 
 //
