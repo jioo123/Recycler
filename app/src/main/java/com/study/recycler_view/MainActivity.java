@@ -22,6 +22,7 @@ import com.study.recycler_view.jioovoice.JiooVoiceActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
@@ -32,6 +33,11 @@ public class MainActivity extends Activity { // 액티비티를 상속
     Change mChange;
     DatabaseReference mDatabaseReference;
     Button mLogoutButton ;
+    static String mId;
+    // 변수를 초기화 해준다
+    public static final String PREF_NAME = "PREF_NAME";
+    public static final String PREF_LOGIN_ID = "PREF_LOGIN_ID";
+    // 파이어베이스에서 데이터 리퍼런스
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // onCreate 생성
@@ -141,32 +147,42 @@ public class MainActivity extends Activity { // 액티비티를 상속
         JiooApplication.getDirayFirebase().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                mId= getSharedPreferences(PREF_NAME, MODE_PRIVATE).getString(PREF_LOGIN_ID, "");
                 HashMap<String, String> diaryHasmap = (HashMap<String, String>) dataSnapshot.getValue();
 
-                // 해쉬맵으로 저장되어 있음
-                // diaryList.keySet().iterator()
+
+
+                Iterator<String> iter=diaryHasmap.keySet().iterator();
+                while(iter.hasNext()){
+                    Dairy dairy = new Dairy();
+                    dairy.mDate=iter.next();
+//                    dairy.mDate = mDatabaseReference.child("Dairy").child(mId).getKey();
+                    dairy.mContent =diaryHasmap.values().iterator().next();
+                    dairyList.add(dairy);
+                }
                 // 해쉬맵 keySet Iterator 사용해서 데이터 추출
-                // Dairy dairy = new Dairy();
-//                dairyList.add(dairy);
 
 
                 adapter.setList(dairyList);
                 adapter.notifyDataSetChanged();
             }
-
+            //에러가 났을 때는 취소 시킨다
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+            mId= getSharedPreferences(PREF_NAME, MODE_PRIVATE).getString(PREF_LOGIN_ID, "");
+            //다이어리 클래스의 변수를 초기화
 
-
-            Dairy dairy = new Dairy();
-            dairy.mDate = "일기날짜";
-            dairy.mContent = "일기내용";
-            dairyList.add(dairy);
-
+//
+//             for (int i = 0; i < diaryHasmap.keySet().size(); i++) {
+//             Dairy dairy = new Dairy();
+//             dairy.mDate = diary.keySet();
+//             dairy.mContent ="일기내용";
+//             dairyList.add(dairy);
+//
+//             }
         // adapter List 설정
         adapter.setList(dairyList);
 //        mRecyclerView.setAdapter(new MyRecyclerAdapter(mAlbumList, R.layout.row_album));

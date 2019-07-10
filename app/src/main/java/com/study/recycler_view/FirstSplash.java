@@ -10,7 +10,9 @@ public class FirstSplash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_splash);
+        // 핸들러 변수 생성, 초기화
         Handler handler = new Handler();
+        // 클릭했을 때 딜레이
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
