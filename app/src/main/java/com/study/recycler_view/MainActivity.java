@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +32,7 @@ public class MainActivity extends Activity { // 액티비티를 상속
     Change mChange;
     DatabaseReference mDatabaseReference;
     Button mLogoutButton ;
+    Button mCalendar;
 
 
     // 파이어베이스에서 데이터 리퍼런스
@@ -113,6 +113,25 @@ public class MainActivity extends Activity { // 액티비티를 상속
                     }
                 }
         );
+
+        mCalendar=(Button)findViewById(R.id.calendar_view);
+        mCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Calendar1.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
+
+
+
+
+
 
     }
 
