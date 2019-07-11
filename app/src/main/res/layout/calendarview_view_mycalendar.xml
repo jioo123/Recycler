@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include
+        android:id="@+id/yearLayout"
+        layout="@layout/calendarview_layout_calendar_years"/>
+
+    <include
+        android:id="@+id/monthLayout"
+        layout="@layout/calendarview_layout_calendar_months"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/yearLayout"/>
+
+    <include
+        android:id="@+id/weekLayout"
+        layout="@layout/calendarview_layout_calendar_weeks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/monthLayout"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_below="@id/weekLayout"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_year"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_below="@id/yearLayout"
+        android:layout_margin="10dp"
+        android:background="#FFFFFF"
+        android:fadingEdgeLength="40dp"
+        android:overScrollMode="never"
+        android:requiresFadingEdge="vertical"
+        android:scrollbars="vertical"
+        android:visibility="gone"
+        tools:listitem="@layout/calendarview_item_calendar_year"/>
+
+    <TextView
+        android:id="@+id/pain_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewpager"
+        android:lines="5"
+        android:paddingBottom="15dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="15dp"
+        android:scrollbars="vertical"
+        android:textColor="#000000"
+        android:textSize="13sp"/>
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pain_txt"
+        android:background="#FFffffff"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="#00ffffff"
+            android:src="@drawable/btn_calender_cancel_n"/>
+
+        <ImageButton
+            android:id="@+id/btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#00ffffff"
+            android:src="@drawable/btn_calender_ok_n"/>
+    </LinearLayout>
+
+</RelativeLayout>

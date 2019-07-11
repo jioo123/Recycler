@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="dim">#DD000000</color>
+
+    <!-- 달력 연도 배경색 -->
+    <color name="year_background">#FF25a0ff</color>
+    <color name="cal_enabled_textcolor">#FFd7d9db</color>
+    <color name="sunday_textcolor">#FFdb3c3c</color>
+    <color name="saturday_textcolor">#FF25a0ff</color>
+
 </resources>

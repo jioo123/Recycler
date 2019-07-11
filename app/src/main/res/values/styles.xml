@@ -17,4 +17,21 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="DayOfTheWeek">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DayOfTheMonth">
+        <item name="android:textSize">14sp</item>
+        <item name="android:minHeight">40dp</item>
+    </style>
+
+    <style name="DimTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/dim</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
 </resources>

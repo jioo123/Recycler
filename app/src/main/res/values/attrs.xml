@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyCalendarView">
+        <attr name="yearLayoutBackgroundColor" format="color"/>
+        <attr name="monthLayoutBackgroundColor" format="color"/>
+        <attr name="yearLayoutTextColor" format="color"/>
+        <attr name="monthLayoutTextColor" format="color"/>
+        <attr name="weekLayoutBackgroundColor" format="color"/>
+        <attr name="weekSundayTextColor" format="color"/>
+        <attr name="weekSaturdayTextColor" format="color"/>
+        <attr name="weekDaysTextColor" format="color"/>
+    </declare-styleable>
+</resources>

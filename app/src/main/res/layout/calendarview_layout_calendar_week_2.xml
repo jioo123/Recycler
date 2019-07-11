@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:tag="weekRow2"
+    android:weightSum="7">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:tag="DAY_OF_MONTH_CONTAINER8">
+
+        <com.study.recycler_view.view.DayView
+            style="@style/DayOfTheMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp"
+            android:gravity="center"
+            android:tag="DAY_OF_MONTH_TEXT8"
+            android:textColor="@color/sunday_textcolor"
+            android:text="8" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:tag="DAY_OF_MONTH_CONTAINER9">
+
+        <com.study.recycler_view.view.DayView
+            style="@style/DayOfTheMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp"
+            android:gravity="center"
+            android:tag="DAY_OF_MONTH_TEXT9"
+            android:text="9" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:tag="DAY_OF_MONTH_CONTAINER10">
+
+        <com.study.recycler_view.view.DayView
+            style="@style/DayOfTheMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp"
+            android:gravity="center"
+            android:tag="DAY_OF_MONTH_TEXT10"
+            android:text="10" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:tag="DAY_OF_MONTH_CONTAINER11">
+
+        <com.study.recycler_view.view.DayView
+            style="@style/DayOfTheMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp"
+            android:gravity="center"
+            android:tag="DAY_OF_MONTH_TEXT11"
+            android:text="11" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:tag="DAY_OF_MONTH_CONTAINER12">
+
+        <com.study.recycler_view.view.DayView
+            style="@style/DayOfTheMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp"
+            android:gravity="center"
+            android:tag="DAY_OF_MONTH_TEXT12"
+            android:text="12" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:tag="DAY_OF_MONTH_CONTAINER13">
+
+        <com.study.recycler_view.view.DayView
+            style="@style/DayOfTheMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp"
+            android:gravity="center"
+            android:tag="DAY_OF_MONTH_TEXT13"
+            android:text="13" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:tag="DAY_OF_MONTH_CONTAINER14">
+
+        <com.study.recycler_view.view.DayView
+            style="@style/DayOfTheMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginBottom="2.5dp"
+            android:gravity="center"
+            android:tag="DAY_OF_MONTH_TEXT14"
+            android:textColor="@color/saturday_textcolor"
+            android:text="14" />
+    </RelativeLayout>
+
+</LinearLayout>
