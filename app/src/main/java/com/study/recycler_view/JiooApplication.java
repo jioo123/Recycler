@@ -1,7 +1,5 @@
 package com.study.recycler_view;
 
-import android.content.SharedPreferences;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,10 +27,15 @@ public class JiooApplication extends android.app.Application {
     }
 
     public static DatabaseReference getDirayFirebase(){
+        boolean check =true;
         // 아이디가 비어있지 않으면 내용을 가져온다
-        if (!mId.equals("")) {
+        if (!mId.equals("") && check ==true) {
+
             mDatabaseReference = mDatabaseReference.child("Dairy").child(mId);
+            check=false;
         }
+
+
         return mDatabaseReference;
 
     }

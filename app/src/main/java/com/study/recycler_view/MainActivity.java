@@ -114,15 +114,15 @@ public class MainActivity extends Activity { // 액티비티를 상속
                 }
         );
 
-        mCalendar=(Button)findViewById(R.id.calendar_view);
-        mCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Calendar1.class);
-                startActivity(intent);
-
-            }
-        });
+//        mCalendar=(Button)findViewById(R.id.calendar_view);
+//        mCalendar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, Calendar1.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
 
 

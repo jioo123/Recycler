@@ -30,7 +30,6 @@
         <activity android:name=".jioovoice.JiooVoiceActivity"/>
         <activity android:name=".MainActivity"/>
     <activity android:name=".LoginActivity"/>
-        <activity android:name=".Calendar1"/>
         <activity android:name=".voice.VoiceActivity"/>
     </application>
 
