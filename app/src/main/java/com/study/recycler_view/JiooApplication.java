@@ -12,6 +12,7 @@ public class JiooApplication extends android.app.Application {
     // 파이어베이스에서 데이터 리퍼런스
     static DatabaseReference mDatabaseReference;
     static String mId;
+    static boolean mCheck =true;    // 멤버변수로 선언해야됨
 
     @Override
     public void onCreate() {
@@ -27,12 +28,16 @@ public class JiooApplication extends android.app.Application {
     }
 
     public static DatabaseReference getDirayFirebase(){
-        boolean check =true;
+//        boolean check =true;  지역변수로 선언시 getDirayFirebase() 호출때마다 변수가 true로 초기화되서
+//                              의미없음...
+
         // 아이디가 비어있지 않으면 내용을 가져온다
-        if (!mId.equals("") && check ==true) {
+//        if (!mId.equals("") && check ==true) {
+        if (!mId.equals("") && mCheck) {    // 이미 true 나 false 의 값을 가지고 있기때문에 비교할 필요 없음
 
             mDatabaseReference = mDatabaseReference.child("Dairy").child(mId);
-            check=false;
+            mCheck = false;
+//            check=false;
         }
 
 
