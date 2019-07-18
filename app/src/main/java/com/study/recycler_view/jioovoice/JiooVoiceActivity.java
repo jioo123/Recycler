@@ -13,17 +13,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.study.recycler_view.JiooApplication;
 import com.study.recycler_view.voice.Utils;
-import com.study.recycler_view.voice.VoiceListener;
 
 public class JiooVoiceActivity extends Activity {
 
+    //변수 정의
     SpeechRecognizer mSpeech;
     DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 초기화
         mDatabase = JiooApplication.getDirayFirebase();
+        //초기화
         startRecoding();
 
 
@@ -36,13 +39,13 @@ public class JiooVoiceActivity extends Activity {
         mSpeech.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle params) {
-                mDatabase.child(Utils.getDate()).setValue("onReadyForSpeech", new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                        print("onReadyForSpeech");
-
-                    }
-                });
+//                mDatabase.child(Utils.getDate()).setValue("onReadyForSpeech", new DatabaseReference.CompletionListener() {
+//                    @Override
+//                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+//                        print("onReadyForSpeech");
+//
+//                    }
+//                });
 
             }
 
@@ -101,12 +104,13 @@ public class JiooVoiceActivity extends Activity {
         // 음성인식 intent 생성
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         // 음성인식 언어 설정
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "ko-KR");
-        //데이터 설정
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE,"ko-KR");
+        //데이터 설정 키, 값
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
         // 중간에 말하는 거 데이터로 받아온다. 중간중간 받아오려고 값 : true
         intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
         // 음성인식 시작 intent로 보이스 레코더 실행
+
         mSpeech.startListening(intent);
     }
 

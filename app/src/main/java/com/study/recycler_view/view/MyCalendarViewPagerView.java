@@ -170,7 +170,7 @@ public class MyCalendarViewPagerView extends LinearLayout {
             markDayAsCurrentDay(mCurrentCalendar);
 
             if (calendarListener != null)
-                calendarListener.onDateSelected(calendar.getTime());
+                calendarListener.onDateSelected(dayOfMonthText, calendar.getTime());
         }
     };
 

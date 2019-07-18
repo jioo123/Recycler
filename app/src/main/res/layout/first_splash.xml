@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <com.study.recycler_view.view.BjmCalendarView
-        android:id="@+id/textView3"
+        android:id="@+id/calendar_view"
         android:layout_width="wrap_content"
-        android:layout_height="224dp"
+        android:layout_height="wrap_content"
         android:text="다이어리" />
 </android.support.constraint.ConstraintLayout>

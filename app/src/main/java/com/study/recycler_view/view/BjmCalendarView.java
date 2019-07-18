@@ -19,12 +19,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.study.recycler_view.R;
 import com.study.recycler_view.utils.DayDecorator;
 
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +32,7 @@ import java.util.List;
  */
 public class BjmCalendarView extends LinearLayout {
 
+    // 변수 설정
     static final String DAY_OF_WEEK = "dayOfWeek";
 
     int mYearLayoutBackgroundColor;
@@ -42,7 +43,7 @@ public class BjmCalendarView extends LinearLayout {
     int mWeekSundayTextColor;
     int mWeekSaturdayTextColor;
     int mWeekDaysTextColor;
-
+    //한 주의 첫번째 날은 일요일
     int mFirstDayOfWeek = Calendar.SUNDAY;
 
 
@@ -50,7 +51,7 @@ public class BjmCalendarView extends LinearLayout {
     View mRootView;
     ImageButton mPreviousMonthButton;
     ImageButton mNextMonthButton;
-    TextView mPainTextView;
+    TextView mUnderText;
     Calendar mCurrentCalendar;
     CalendarListener mCalendarListener;
 
@@ -61,7 +62,7 @@ public class BjmCalendarView extends LinearLayout {
     RecyclerView mRecyclerView;
     CalendarYearAdapter mCalYearAdapter;
     SelectedPositionRunnable mSelectedPositionRunnable;
-
+    // 왜 this 쓰는지 모르겠음 
     public BjmCalendarView(Context context) {
         this(context, null);
     }
@@ -95,8 +96,8 @@ public class BjmCalendarView extends LinearLayout {
 
         mPreviousMonthButton = mRootView.findViewById(R.id.btn_month_left);
         mNextMonthButton = mRootView.findViewById(R.id.btn_month_right);
-        mPainTextView = mRootView.findViewById(R.id.pain_txt);
-        mPainTextView.setMovementMethod(new ScrollingMovementMethod());
+        mUnderText = mRootView.findViewById(R.id.dairy_txt);
+        mUnderText.setMovementMethod(new ScrollingMovementMethod());
         mPreviousMonthButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +120,7 @@ public class BjmCalendarView extends LinearLayout {
 
         cancelButton.setOnClickListener(mOnClickListener);
         okButton.setOnClickListener(mOnClickListener);
+        findViewById(R.id.dairy_txt).setOnClickListener(mOnClickListener);
 
         mPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
         int todayYear = currentCal.get(Calendar.YEAR);
@@ -154,7 +156,7 @@ public class BjmCalendarView extends LinearLayout {
     OnClickListener mOnClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-//            if (mCalendarListener != null) {
+            if (mCalendarListener != null) {
 //                if (v.getId() == R.id.btn_cancel) {
 //                    mCalendarListener.onCancel();
 //                } else if (v.getId() == R.id.btn_ok) {
@@ -162,7 +164,12 @@ public class BjmCalendarView extends LinearLayout {
 //                            new Date(System.currentTimeMillis())
 //                            : mAdapter.getCurrentDate());
 //                }
-//            }
+                if(v.getId() == R.id.dairy_txt){
+                    mCalendarListener.inputDairy(mAdapter.getCurrentDate() == null ?
+                            new Date(System.currentTimeMillis())
+                            : mAdapter.getCurrentDate());
+                }
+            }
         }
     };
 
@@ -313,8 +320,8 @@ public class BjmCalendarView extends LinearLayout {
         }
     }
 
-    public void setPainText(String pain) {
-        mPainTextView.setText(pain);
+    public void setUnderText(String text) {
+        mUnderText.setText(text);
     }
 
     /**

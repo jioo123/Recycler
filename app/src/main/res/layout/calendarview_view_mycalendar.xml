@@ -45,7 +45,7 @@
         tools:listitem="@layout/calendarview_item_calendar_year"/>
 
     <TextView
-        android:id="@+id/pain_txt"
+        android:id="@+id/dairy_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/viewpager"
@@ -58,15 +58,16 @@
         android:textColor="#000000"
         android:textSize="13sp"/>
 
+
     <LinearLayout
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pain_txt"
+        android:layout_below="@id/dairy_txt"
         android:background="#FFffffff"
         android:gravity="center"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageButton
             android:id="@+id/btn_cancel"

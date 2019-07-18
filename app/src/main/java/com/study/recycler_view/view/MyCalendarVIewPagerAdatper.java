@@ -30,7 +30,7 @@ public class MyCalendarVIewPagerAdatper extends PagerAdapter {
     int mFirstDayOfWeek;
 
     public interface CalendarSelectedListener {
-        void onDateSelected(Date date);
+        void onDateSelected(View view, Date date);
     }
 
     public MyCalendarVIewPagerAdatper(Context context, int maxSize, int firstDayOfWeek) {
@@ -44,14 +44,14 @@ public class MyCalendarVIewPagerAdatper extends PagerAdapter {
         Calendar cal = Calendar.getInstance();
         cal.set(1970, Calendar.JANUARY, 1, 0, 0, 0);
         cal.add(Calendar.MONTH, position);
-        MyCalendarViewPagerView view = new MyCalendarViewPagerView(mContext);
+        final MyCalendarViewPagerView view = new MyCalendarViewPagerView(mContext);
         view.setFirstDayOfWeek(mFirstDayOfWeek);
         view.setDecorators(mDecoratorList);
         view.setCalendarListener(new CalendarSelectedListener() {
             @Override
-            public void onDateSelected(Date date) {
+            public void onDateSelected(View day, Date date) {
                 if (mCalendarListener != null) {
-                    mCalendarListener.onDateSelected(date);
+                    mCalendarListener.onDateSelected(day ,date);
                 }
                 mCurrentDate = date;
             }

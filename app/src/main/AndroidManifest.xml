@@ -31,6 +31,7 @@
         <activity android:name=".MainActivity"/>
     <activity android:name=".LoginActivity"/>
         <activity android:name=".voice.VoiceActivity"/>
+        <activity android:name=".ui.InputActivity"/>
     </application>
 
 </manifest>
