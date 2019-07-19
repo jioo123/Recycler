@@ -10,11 +10,5 @@ import java.util.Date;
 public interface CalendarListener {
     void onDateSelected(View v, Date date);
 
-//    void onMonthChanged(Date time);
-
-//    void onCancel();
-////
-//    void onOkClick(Date date);
-
     void inputDairy(Date date);
 }
