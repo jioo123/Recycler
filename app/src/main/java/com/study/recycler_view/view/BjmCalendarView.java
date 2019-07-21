@@ -2,7 +2,6 @@ package com.study.recycler_view.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -12,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.text.method.ScrollingMovementMethod;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,7 +22,6 @@ import com.study.recycler_view.R;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by BJM on 2016-09-13.
@@ -61,13 +58,11 @@ public class BjmCalendarView extends LinearLayout {
     RecyclerView mRecyclerView;
     CalendarYearAdapter mCalYearAdapter;
     SelectedPositionRunnable mSelectedPositionRunnable;
-<<<<<<< HEAD
-    // 왜 this 쓰는지 모르겠음
-=======
+
 
     // 왜 this 쓰는지 모르겠음
     // 아래 BjmCalendarView 에 생성자로 넣기위해 this를 사용
->>>>>>> 3942c3637e49246f023b2cfbca87a746e4492632
+
     public BjmCalendarView(Context context) {
         this(context, null);
     }

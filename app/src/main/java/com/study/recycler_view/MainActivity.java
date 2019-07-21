@@ -71,7 +71,7 @@ public class MainActivity extends Activity { // 액티비티를 상속
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // 객체를 생성, 초기화
                 //Value를 String.class 타입으로 형변환
-//                HashMap value = dataSnapshot.getValue(HashMap.class);
+                HashMap value = dataSnapshot.getValue(HashMap.class);
 //                 데이터 값을 띄운다
                 Log.d(TAG, "Value is: " + dataSnapshot);
             }
@@ -150,8 +150,8 @@ public class MainActivity extends Activity { // 액티비티를 상속
                 // 해당 액티비티의 Context를 사용
                 // 인터페이스안에 메소드라서 단순 this 를 사용하면 해당 인터페이스를 가르킴
                 // 따라서 MainActivity.this 로 클래스명.this 로 사용
-             //   Intent intent = new Intent(MainActivity.this, NewPage.class);
-              //  startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, NewPage.class);
+                startActivity(intent);
             }
         };
         // 아답터 객체를 초기화 하고 생성
@@ -204,7 +204,7 @@ public class MainActivity extends Activity { // 액티비티를 상속
         adapter.setList(dairyList);
 //        mRecyclerView.setAdapter(new MyRecyclerAdapter(mAlbumList, R.layout.row_album));
 
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         // 액티비티 안에서 Context 를 사용할 때는  ApplicationContext 를 사용하기보다 액티비티의 Context 를 사용하는게 좋음
         // 리사이클러뷰 setLayoutManager, setItemAnimator 객체 생성과 초기화
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
