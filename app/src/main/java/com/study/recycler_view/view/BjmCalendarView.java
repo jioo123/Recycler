@@ -62,11 +62,11 @@ public class BjmCalendarView extends LinearLayout {
     RecyclerView mRecyclerView;
     CalendarYearAdapter mCalYearAdapter;
     SelectedPositionRunnable mSelectedPositionRunnable;
-    // 왜 this 쓰는지 모르겠음 
+    // 왜 this 쓰는지 모르겠음
     public BjmCalendarView(Context context) {
         this(context, null);
     }
-
+    // 초기화 메소드
     public BjmCalendarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mContext = context;

@@ -159,7 +159,7 @@ public class MainActivity extends Activity { // 액티비티를 상속
         adapter.setInterface(mChange);      //미리 초기화한 인터페이스를 넣어줌
         // mAlumList를 생성, 초기화
         final List<Dairy> dairyList = new ArrayList<>();
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerViehttps://blog.naver.com/opicnojam/221537733279 w.setAdapter(adapter);
 
         JiooApplication.getDirayFirebase().addValueEventListener(new ValueEventListener() {
             @Override
