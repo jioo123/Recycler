@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.study.recycler_view.R;
-import com.study.recycler_view.utils.DayDecorator;
 
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
@@ -62,7 +61,13 @@ public class BjmCalendarView extends LinearLayout {
     RecyclerView mRecyclerView;
     CalendarYearAdapter mCalYearAdapter;
     SelectedPositionRunnable mSelectedPositionRunnable;
+<<<<<<< HEAD
     // 왜 this 쓰는지 모르겠음
+=======
+
+    // 왜 this 쓰는지 모르겠음
+    // 아래 BjmCalendarView 에 생성자로 넣기위해 this를 사용
+>>>>>>> 3942c3637e49246f023b2cfbca87a746e4492632
     public BjmCalendarView(Context context) {
         this(context, null);
     }
@@ -76,6 +81,7 @@ public class BjmCalendarView extends LinearLayout {
         initializeCalendar(currentCal);
     }
 
+    // 레이아웃의 속성을 정의
     void getAttributes(AttributeSet attrs) {
         final TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.MyCalendarView, 0, 0);
         mYearLayoutBackgroundColor = typedArray.getColor(R.styleable.MyCalendarView_yearLayoutBackgroundColor, ContextCompat.getColor(mContext, R.color.year_background));
@@ -89,6 +95,7 @@ public class BjmCalendarView extends LinearLayout {
         typedArray.recycle();
     }
 
+    // 뷰의 항목들 초기화 (버튼이나 달력 리스트뷰 아답터 등)
     void initializeCalendar(Calendar currentCal) {
 
         final LayoutInflater inflate = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -194,6 +201,7 @@ public class BjmCalendarView extends LinearLayout {
         }
     }
 
+    // 년월 리스트뷰 초기화
     void initializeMonthLayout() {
         View yearLayout = mRootView.findViewById(R.id.yearLayout);
         yearLayout.setBackgroundColor(mYearLayoutBackgroundColor);
@@ -236,7 +244,6 @@ public class BjmCalendarView extends LinearLayout {
             mRecyclerView.addOnItemTouchListener(new JmItemTouchListener() {
                 @Override
                 public void onClick(int position) {
-                    Log.d("@@@@@@@@@@", "MyCalendar 1 time = " + SystemClock.elapsedRealtime());
                     int monthPosition = mPager.getCurrentItem() % 12;
 
                     int calendarPosition;
@@ -249,7 +256,6 @@ public class BjmCalendarView extends LinearLayout {
                     }
                     mPager.setCurrentItem(calendarPosition, false);
                     mRecyclerView.setVisibility(View.GONE);
-                    Log.d("@@@@@@@@@@", "MyCalendar 2 time = " + SystemClock.elapsedRealtime());
                 }
             });
 
@@ -266,6 +272,7 @@ public class BjmCalendarView extends LinearLayout {
         }
     }
 
+    // 요일 초기화
     void initializeWeekLayout() {
         TextView dayOfWeek;
         String dayOfTheWeekString;
@@ -294,6 +301,7 @@ public class BjmCalendarView extends LinearLayout {
 
     }
 
+    // 인덱스
     int getWeekIndex(int weekIndex, Calendar currentCalendar) {
         int firstDayWeekPosition = currentCalendar.getFirstDayOfWeek();
         if (firstDayWeekPosition == Calendar.SUNDAY) {
@@ -304,12 +312,6 @@ public class BjmCalendarView extends LinearLayout {
             } else {
                 return weekIndex - 1;
             }
-        }
-    }
-
-    public void setDecorators(List<DayDecorator> decorators) {
-        if (mAdapter != null) {
-            mAdapter.setDecoratorList(decorators);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.study.recycler_view.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -12,24 +13,23 @@ import android.widget.TextView;
 
 import com.study.recycler_view.R;
 import com.study.recycler_view.utils.CalendarUtils;
-import com.study.recycler_view.utils.DayDecorator;
 import com.study.recycler_view.utils.StringUtils;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by BJM on 2016-09-13.
+ * 달력 뷰페이저 아답터에 들어갈 달력레이아웃
  */
 public class MyCalendarViewPagerView extends LinearLayout {
 
     private int disabledDayBackgroundColor;
     private int disabledDayTextColor;
     private int calendarBackgroundColor;
+    private int dayOfWeekTextColor;
 
     private int firstDayOfWeek = Calendar.SUNDAY;
-    private List<DayDecorator> decorators = null;
 
     private static final String DAY_OF_MONTH_TEXT = "DAY_OF_MONTH_TEXT";
     private static final String DAY_OF_MONTH_CONTAINER = "DAY_OF_MONTH_CONTAINER";
@@ -48,6 +48,7 @@ public class MyCalendarViewPagerView extends LinearLayout {
         super(context, attr);
         mContext = context;
         calendarBackgroundColor = ContextCompat.getColor(mContext, android.R.color.white);
+        dayOfWeekTextColor = ContextCompat.getColor(mContext, android.R.color.black);
         disabledDayBackgroundColor = ContextCompat.getColor(mContext, android.R.color.white);
         disabledDayTextColor = ContextCompat.getColor(mContext, R.color.cal_enabled_textcolor);
         initializeCalendar();
@@ -100,7 +101,7 @@ public class MyCalendarViewPagerView extends LinearLayout {
                 continue;
 
             dayOfMonthContainer.setOnClickListener(null);
-            dayView.bind(startCalendar.getTime(), getDecorators());
+            dayView.bind(startCalendar.getTime());
             dayView.setVisibility(View.VISIBLE);
 
             if (CalendarUtils.isSameMonth(calendar, startCalendar)) {
@@ -108,13 +109,21 @@ public class MyCalendarViewPagerView extends LinearLayout {
                 dayOfMonthContainer.setOnClickListener(onDayOfMonthClickListener);
                 dayView.setBackgroundColor(calendarBackgroundColor);
                 dayView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+                if (Integer.parseInt(dayView.getTag().toString().replace(DAY_OF_MONTH_TEXT, "")) % 7 == 1) {
+                    dayView.setTextColor(getResources().getColor(R.color.saturday_textcolor));
+                } else if (Integer.parseInt(dayView.getTag().toString().replace(DAY_OF_MONTH_TEXT, "")) % 7 == 0) {
+                    dayView.setTextColor(getResources().getColor(R.color.sunday_textcolor));
+                }else {
+                    dayView.setTextColor(Color.BLACK);
+
+                }
+
                 markDayAsCurrentDay(startCalendar);
             } else {
                 dayView.setmMonth(false);
                 dayView.setBackgroundColor(disabledDayBackgroundColor);
                 dayView.setTextColor(disabledDayTextColor);
             }
-            dayView.decorate();
 
             startCalendar.add(Calendar.DATE, 1);
             dayOfMonthIndex++;
@@ -142,13 +151,6 @@ public class MyCalendarViewPagerView extends LinearLayout {
         }
     }
 
-    public List<DayDecorator> getDecorators() {
-        return decorators;
-    }
-
-    public void setDecorators(List<DayDecorator> decorators) {
-        this.decorators = decorators;
-    }
 
     public void setCalendarListener(MyCalendarVIewPagerAdatper.CalendarSelectedListener calendarListener) {
         this.calendarListener = calendarListener;
@@ -239,7 +241,7 @@ public class MyCalendarViewPagerView extends LinearLayout {
             final DayView dayView = getDayOfMonthText(calendar);
             dayView.setBackgroundColor(calendarBackgroundColor);
             dayView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
-            dayView.decorate();
+            dayView.setTextColor(dayOfWeekTextColor);
         }
     }
 

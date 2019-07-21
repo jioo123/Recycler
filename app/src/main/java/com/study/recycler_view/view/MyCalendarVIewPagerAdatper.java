@@ -7,20 +7,18 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.study.recycler_view.utils.DayDecorator;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by BJM on 2016-09-13.
+ * 달력 뷰페이저 아답터
  */
 public class MyCalendarVIewPagerAdatper extends PagerAdapter {
 
     Context mContext;
 
-    List<DayDecorator> mDecoratorList = null;
     CalendarListener mCalendarListener = null;
 
     SparseArray<MyCalendarViewPagerView> mViewList = new SparseArray<MyCalendarViewPagerView>();
@@ -46,7 +44,6 @@ public class MyCalendarVIewPagerAdatper extends PagerAdapter {
         cal.add(Calendar.MONTH, position);
         final MyCalendarViewPagerView view = new MyCalendarViewPagerView(mContext);
         view.setFirstDayOfWeek(mFirstDayOfWeek);
-        view.setDecorators(mDecoratorList);
         view.setCalendarListener(new CalendarSelectedListener() {
             @Override
             public void onDateSelected(View day, Date date) {
@@ -91,9 +88,6 @@ public class MyCalendarVIewPagerAdatper extends PagerAdapter {
         return view == object;
     }
 
-    public void setDecoratorList(List<DayDecorator> mDecoratorList) {
-        this.mDecoratorList = mDecoratorList;
-    }
 
     public void setCalendarListener(CalendarListener listener) {
         mCalendarListener = listener;
